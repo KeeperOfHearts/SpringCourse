@@ -19,6 +19,8 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
+//			createStudent(studentDAO);
+
 //		 	createMultipleStudent(studentDAO);
 
 //			readStudent(studentDAO);
@@ -27,9 +29,22 @@ public class CruddemoApplication {
 
 //			queryForStudentByLastName(studentDAO, "Doe");
 
-				updateStudent(studentDAO);
+//				updateStudent(studentDAO);
+
+//			deleteStudent(studentDAO, 1);
+
+			deleteAll(studentDAO);
 		};
 
+	}
+
+	private void deleteAll(StudentDAO studentDAO) {
+		studentDAO.deleteAll();
+	}
+
+	private void deleteStudent(StudentDAO studentDAO, int id) {
+		System.out.println("Deleting student with id: " + id);
+		studentDAO.delete(id);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
@@ -86,7 +101,7 @@ public class CruddemoApplication {
 	private void createStudent(StudentDAO studentDAO) {
 		// create student object
 		System.out.println("Creating a new student object ...");
-		Student tempStudent = new Student("Paul", "Doe", "paul@luv2code.com");
+		Student tempStudent = new Student("John", "Doe", "paul@luv2code.com");
 
 		// inject student object
 		System.out.println("Saving the student ...");

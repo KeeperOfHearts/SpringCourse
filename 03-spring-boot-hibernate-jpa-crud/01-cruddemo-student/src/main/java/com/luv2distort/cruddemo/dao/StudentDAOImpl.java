@@ -3,6 +3,7 @@ package com.luv2distort.cruddemo.dao;
 import com.luv2distort.cruddemo.entity.Student;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -60,6 +61,20 @@ public class StudentDAOImpl implements StudentDAO {
     @Transactional
     public void update(Student theStudent) {
         entityManager.merge(theStudent);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Integer id) {
+        Student student = entityManager.find(Student.class, id);
+
+        entityManager.remove(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAll() {
+        entityManager.createQuery("DELETE FROM Student").executeUpdate();
     }
 
 }
