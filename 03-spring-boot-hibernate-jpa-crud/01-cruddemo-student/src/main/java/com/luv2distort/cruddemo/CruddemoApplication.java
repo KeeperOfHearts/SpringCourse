@@ -12,6 +12,8 @@ import java.util.List;
 @SpringBootApplication
 public class CruddemoApplication {
 
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
@@ -21,7 +23,7 @@ public class CruddemoApplication {
 		return runner -> {
 //			createStudent(studentDAO);
 
-//		 	createMultipleStudent(studentDAO);
+		 	createMultipleStudent(studentDAO);
 
 //			readStudent(studentDAO);
 
@@ -33,7 +35,7 @@ public class CruddemoApplication {
 
 //			deleteStudent(studentDAO, 1);
 
-			deleteAll(studentDAO);
+//			deleteAll(studentDAO);
 		};
 
 	}
