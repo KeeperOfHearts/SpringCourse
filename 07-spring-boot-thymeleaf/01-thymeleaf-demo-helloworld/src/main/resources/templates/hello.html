@@ -5,8 +5,11 @@
         <title>Thymeleaf Demo</title>
     </head>
 
+    <link rel="stylesheet"
+          th:href="@{/css/demo.css}"/>
+
     <body>
-        <p th:text="'Time on server is: ' + ${theDate}"></p>
+        <p th:text="'Time on server is: ' + ${theDate}" class="funny"></p>
     </body>
 
 </html>
