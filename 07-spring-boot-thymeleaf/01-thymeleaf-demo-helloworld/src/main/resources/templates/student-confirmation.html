@@ -5,7 +5,8 @@
     <title>Student Form Success</title>
 </head>
 <body>
-      <span th:text="${student.firstName} + ' ' + ${student.lastName}" />
+      <span th:text="'Hello ' + ${student.firstName} + ' ' + ${student.lastName} +  ' from '  + ${student.country}"/>
+
 
 </body>
 </html>

@@ -7,7 +7,19 @@
 <body>
     <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
         <input type="text" th:field="*{firstName}" placeholder="What's your name?" required>
+
+        <br><br>
+
         <input type="text" th:field="*{lastName}" id="lastname" name="lastname" placeholder="What's your last name?" required>
+
+        <br><br>
+
+        Country:
+        <select th:field="*{country}" required>
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"/>
+        </select>
+        <br><br>
+
         <button type="submit">Submit</button>
 
     </form>
