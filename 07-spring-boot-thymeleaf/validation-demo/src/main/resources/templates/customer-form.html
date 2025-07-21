@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Registration Form</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <i>Fill out the form. Asterisk (*) means required.</i>
+
+    <br><br>
+
+    <form th:action="@{/processForm}" method="post" th:object="${customer}">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
+        <br>
+
+        <label for="lastName">Last Name*:</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}">
+
+        <!-- error display -->
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>
