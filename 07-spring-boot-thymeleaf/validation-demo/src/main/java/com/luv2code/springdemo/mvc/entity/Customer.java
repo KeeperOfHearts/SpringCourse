@@ -1,5 +1,6 @@
 package com.luv2code.springdemo.mvc.entity;
 
+import com.luv2code.springdemo.mvc.validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
@@ -16,6 +17,9 @@ public class Customer {
 
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "Postal code must be 5 characters long and only Characters/Numbers")
     private String postalCode;
+
+    @CourseCode(value = "TOPS", message = "must start with TOPS")
+    private String courseCode;
 
     public Customer() {
     }
@@ -50,5 +54,13 @@ public class Customer {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }
