@@ -6,8 +6,13 @@
 </head>
 <body>
       <form action="#" th:action="@{/authenticateTheUser}" method="post">
+
         <h2>Custom Login Page</h2>
         <hr>
+
+        <div th:if="${param.error}">
+            <p style="color:red;">Invalid username or password.</p>
+        </div>
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
