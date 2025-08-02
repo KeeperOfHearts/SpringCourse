@@ -24,13 +24,13 @@ public class DemoSecurityConfig {
         UserDetails mary = User.builder()
                 .username("mary")
                 .password("{noop}test123") // {noop} indicates no password encoder
-                .roles("EMPLOYEE", "MANAGER")
+                .roles("EMPLOYEE", "ADMIN")
                 .build();
 
         UserDetails susan = User.builder()
                 .username("susan")
                 .password("{noop}test123") // {noop} indicates no password encoder
-                .roles("EMPLOYEE", "MANAGER", "ADMIN")
+                .roles("EMPLOYEE", "ADMIN", "MANAGER")
                 .build();
 
         return new InMemoryUserDetailsManager(john, mary, susan);
