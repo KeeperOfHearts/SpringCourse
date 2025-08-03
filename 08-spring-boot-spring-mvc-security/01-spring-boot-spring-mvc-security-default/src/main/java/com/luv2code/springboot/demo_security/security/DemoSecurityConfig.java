@@ -7,34 +7,14 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
-
-    @Bean
-    public InMemoryUserDetailsManager userDetails() {
-
-        UserDetails john = User.builder()
-                .username("john")
-                .password("{noop}test123") // {noop} indicates no password encoder
-                .roles("EMPLOYEE")
-                .build();
-
-        UserDetails mary = User.builder()
-                .username("mary")
-                .password("{noop}test123") // {noop} indicates no password encoder
-                .roles("EMPLOYEE", "ADMIN")
-                .build();
-
-        UserDetails susan = User.builder()
-                .username("susan")
-                .password("{noop}test123") // {noop} indicates no password encoder
-                .roles("EMPLOYEE", "ADMIN", "MANAGER")
-                .build();
-
-        return new InMemoryUserDetailsManager(john, mary, susan);
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -53,5 +33,10 @@ public class DemoSecurityConfig {
                 .exceptionHandling(configurer -> configurer.accessDeniedPage("/access-denied"));
 
         return http.build();
+    }
+
+    @Bean
+    public UserDetailsManager userDetails(DataSource dataSource) {
+        return new JdbcUserDetailsManager(dataSource);
     }
 }
