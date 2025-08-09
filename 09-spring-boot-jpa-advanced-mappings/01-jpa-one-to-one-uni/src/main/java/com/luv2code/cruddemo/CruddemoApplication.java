@@ -28,15 +28,28 @@ public class CruddemoApplication {
 //				"https://www.luv2code.com/youtube", "Luv 2 Code!!!"
 //		);
 
-		Instructor instructor = new Instructor("Madhu" , "Patek", "madhu@luv2code.com");
-		InstructorDetail instructorDetail = new InstructorDetail(
-				"https://www.luv2code.com/youtube", "Guitar"
-		);
+//		Instructor instructor = new Instructor("Madhu" , "Patek", "madhu@luv2code.com");
+//		InstructorDetail instructorDetail = new InstructorDetail(
+//				"https://www.luv2code.com/youtube", "Guitar"
+//		);
+//
+//		instructor.setInstructorDetail(instructorDetail);
 
-		instructor.setInstructorDetail(instructorDetail);
+		Instructor instructor = findInstructor(appDAO);
 
-		System.out.println("Saving instructor: " + instructor);
-		appDAO.save(instructor);
+//		System.out.println("Found instructor: " + instructor);
+	}
+
+	private Instructor findInstructor(AppDAO appDAO) {
+		int id = 2;
+		System.out.println("Finding instructor with id: " + id);
+		Instructor instructor = appDAO.findById(id);
+		if (instructor != null) {
+			System.out.println("Found instructor: " + instructor);
+		} else {
+			System.out.println("Instructor with id " + id + " not found.");
+		}
+		return instructor;
 	}
 
 }
