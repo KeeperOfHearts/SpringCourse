@@ -35,9 +35,10 @@ public class CruddemoApplication {
 //
 //		instructor.setInstructorDetail(instructorDetail);
 
-		Instructor instructor = findInstructor(appDAO);
+//		Instructor instructor = findInstructor(appDAO);
 
-//		System.out.println("Found instructor: " + instructor);
+		deleteInstructor(appDAO);
+
 	}
 
 	private Instructor findInstructor(AppDAO appDAO) {
@@ -50,6 +51,13 @@ public class CruddemoApplication {
 			System.out.println("Instructor with id " + id + " not found.");
 		}
 		return instructor;
+	}
+
+	private void deleteInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Deleting instructor with id: " + id);
+		appDAO.deleteById(id);
+		System.out.println("Deleted instructor with id: " + id);
 	}
 
 }
