@@ -34,13 +34,17 @@ public class CruddemoApplication {
 //		);
 //
 //		instructor.setInstructorDetail(instructorDetail);
+//
+//		System.out.println("Saving instructor: " + instructor);
+//		appDAO.save(instructor);
 
 //		Instructor instructor = findInstructor(appDAO);
 
 //		deleteInstructor(appDAO);
 		
-		findInstructorDetail(appDAO);
+//		findInstructorDetail(appDAO);
 
+		deleteInstructorDetail(appDAO);
 	}
 
 	private InstructorDetail findInstructorDetail(AppDAO appDAO) {
@@ -56,6 +60,12 @@ public class CruddemoApplication {
 		return instructorDetail;
 	}
 
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int id = 5;
+		System.out.println("Deleting instructor detail with id: " + id);
+		appDAO.deleteInstructorDetailById(id);
+	}
+
 	private Instructor findInstructor(AppDAO appDAO) {
 		int id = 2;
 		System.out.println("Finding instructor with id: " + id);
@@ -69,7 +79,7 @@ public class CruddemoApplication {
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
-		int id = 1;
+		int id = 4;
 		System.out.println("Deleting instructor with id: " + id);
 		appDAO.deleteById(id);
 		System.out.println("Deleted instructor with id: " + id);
