@@ -50,6 +50,7 @@ public class AppDAOImpl implements AppDAO{
     public void deleteInstructorDetailById(int id) {
         InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, id);
         if (instructorDetail != null) {
+            instructorDetail.getInstructor().setInstructorDetail(null);
             entityManager.remove(instructorDetail);
             System.out.println("Successfully deleted Instructor detail with id: " + id);
         } else {
