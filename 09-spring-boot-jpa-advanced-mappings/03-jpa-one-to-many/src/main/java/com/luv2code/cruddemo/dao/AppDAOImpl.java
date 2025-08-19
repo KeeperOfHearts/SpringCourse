@@ -38,6 +38,7 @@ public class AppDAOImpl implements AppDAO{
     public void deleteById(int id) {
         Instructor instructor = entityManager.find(Instructor.class, id);
         if (instructor != null) {
+            instructor.getCourses().forEach(course -> course.setInstructor(null));
             entityManager.remove(instructor);
         } else {
             System.out.println("Instructor with id " + id + " not found.");
@@ -55,6 +56,7 @@ public class AppDAOImpl implements AppDAO{
         InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, id);
         if (instructorDetail != null) {
             instructorDetail.getInstructor().setInstructorDetail(null);
+
             entityManager.remove(instructorDetail);
             System.out.println("Successfully deleted Instructor detail with id: " + id);
         } else {
