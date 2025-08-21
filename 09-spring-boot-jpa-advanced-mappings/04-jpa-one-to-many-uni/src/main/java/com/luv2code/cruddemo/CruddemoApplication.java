@@ -4,6 +4,7 @@ import com.luv2code.cruddemo.dao.AppDAO;
 import com.luv2code.cruddemo.entity.Course;
 import com.luv2code.cruddemo.entity.Instructor;
 import com.luv2code.cruddemo.entity.InstructorDetail;
+import com.luv2code.cruddemo.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,8 +20,34 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-
+			createCourseAndReviews(appDAO);
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course course = new Course("Java Programming - The Complete Beginner's Guide");
+		course.addReview(new Review("Great course!"));
+		course.addReview(new Review("Very informative."));
+		course.addReview(new Review("Loved the hands-on examples."));
+
+		System.out.println("Saving course: " + course);
+		appDAO.save(course);
+
+		System.out.println("Course saved successfully with reviews: " + course.getReviews());
+
+		// Uncomment to test other functionalities
+		// createInstructor(appDAO);
+		// findInstructor(appDAO);
+		// deleteInstructor(appDAO);
+		// findInstructorDetail(appDAO);
+		// deleteInstructorDetail(appDAO);
+		// createInstructorWIthCourses(appDAO);
+		// findInstructorWithCourses(appDAO);
+		// findCoursesForInstructor(appDAO);
+		// findInstructorWithCoursesJoinFetch(appDAO);
+		// updateInstructor(appDAO);
+		// updateCourse(appDAO);
+		// deleteCourse(appDAO);
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
