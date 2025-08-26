@@ -2,6 +2,8 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -16,6 +18,9 @@ public class Student {
     private String lastName;
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, mappedBy = "students")
+    List<Course> courses;
 
     public Student() {
     }
@@ -58,8 +63,24 @@ public class Student {
         this.email = email;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public void addCourse(Course tempCourse) {
+        if (courses == null) {
+            courses = new java.util.ArrayList<>();
+        }
+        courses.add(tempCourse);
+    }
+
     @Override
-    public String toString() {
+    public String
+    toString() {
         return "Student{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
