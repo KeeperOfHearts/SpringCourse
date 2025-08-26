@@ -1,10 +1,7 @@
 package com.luv2code.cruddemo;
 
 import com.luv2code.cruddemo.dao.AppDAO;
-import com.luv2code.cruddemo.entity.Course;
-import com.luv2code.cruddemo.entity.Instructor;
-import com.luv2code.cruddemo.entity.InstructorDetail;
-import com.luv2code.cruddemo.entity.Review;
+import com.luv2code.cruddemo.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,8 +17,18 @@ public class CruddemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-
+			createCourseAndStudents(appDAO);
 		};
+	}
+
+	private void createCourseAndStudents(AppDAO appDAO) {
+		Course course = new Course("Java Programming - The Complete Beginner's Guide");
+		course.addStudent(new Student("Hide" , "Yoda", "coolyoda@gmail.com"));
+		course.addStudent(new Student("John" , "Doe", "johndoe@luv2code.com"));
+
+		System.out.println("Saving course: " + course);
+		appDAO.save(course);
+		System.out.println("Course saved successfully with students: " + course.getStudents());
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
