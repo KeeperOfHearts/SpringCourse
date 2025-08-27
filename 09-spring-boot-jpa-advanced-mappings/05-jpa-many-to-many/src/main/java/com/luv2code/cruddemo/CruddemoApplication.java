@@ -23,12 +23,22 @@ public class CruddemoApplication {
 
             // findStudentAndCourses(appDAO);
 
-            addMoreCoursesForStudent(appDAO);
+            // addMoreCoursesForStudent(appDAO);
+
+            // deleteCourse(appDAO);
+
+            deleteStudent(appDAO);
         };
     }
 
+    private void deleteStudent(AppDAO appDAO) {
+        int studentId = 6;
+        System.out.println("Deleting student with id: " + studentId);
+        appDAO.deleteStudentById(studentId);
+    }
+
     private void addMoreCoursesForStudent(AppDAO appDAO) {
-        int studentId = 5;
+        int studentId = 6;
         System.out.println("Finding student with id: " + studentId);
         Student student = appDAO.findStudentAndCoursesById(studentId);
         if (student != null) {
@@ -129,7 +139,7 @@ public class CruddemoApplication {
     }
 
     private void deleteCourse(AppDAO appDAO) {
-        int courseId = 10;
+        int courseId = 12;
         System.out.println("Deleting course with id: " + courseId);
         appDAO.deleteCourseById(courseId);
 
