@@ -22,7 +22,7 @@ public class AopdemoApplication {
 	}
 
 	private void demoBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
-		theAccountDAO.addAccount();
+		theAccountDAO.addAccount(new Account());
 
 
 		theMembershipDAO.addSillyMember();
