@@ -24,6 +24,7 @@ public class AopdemoApplication {
 	private void demoBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		theAccountDAO.addAccount(new Account("Kritik", "ultra"), true);
 
+		theAccountDAO.doWork();
 
 		theMembershipDAO.addSillyMember();
 
