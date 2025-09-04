@@ -17,8 +17,19 @@ public class AopdemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		return runner -> {
-			demoBeforeAdvice(theAccountDAO, theMembershipDAO);
+//			demoBeforeAdvice(theAccountDAO, theMembershipDAO);
+
+			demoTheAfterReturningAdvice(theAccountDAO);
 		};
+	}
+
+	private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
+		System.out.println("\nMain Program: AfterReturningDemoApp");
+		System.out.println("=====> Calling findAccounts()");
+
+		var accounts = theAccountDAO.findAccounts();
+
+		System.out.println("\n=====>After found Accounts: " + accounts);
 	}
 
 	private void demoBeforeAdvice(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
