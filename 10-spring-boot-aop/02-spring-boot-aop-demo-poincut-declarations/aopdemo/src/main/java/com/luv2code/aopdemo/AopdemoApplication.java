@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class AopdemoApplication {
 
@@ -19,8 +21,25 @@ public class AopdemoApplication {
 		return runner -> {
 //			demoBeforeAdvice(theAccountDAO, theMembershipDAO);
 
-			demoTheAfterReturningAdvice(theAccountDAO);
+//			demoTheAfterReturningAdvice(theAccountDAO);
+			
+			demoTheAfterThrowingAdvice(theAccountDAO);
 		};
+	}
+
+	private void demoTheAfterThrowingAdvice(AccountDAO theAccountDAO) {
+		List<Account> accounts = null;
+		try {
+			boolean tripWire = true;
+
+			accounts = theAccountDAO.findAccounts(tripWire);
+		} catch (Exception e) {
+			System.out.println("\n=====> We caught the exception: " + e);
+		}
+
+		System.out.println("\nMain Program: AfterThrowingAdvice");
+
+		System.out.println("\n=====>After found Accounts: " + accounts);
 	}
 
 	private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
